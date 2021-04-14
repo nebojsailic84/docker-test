@@ -1,7 +1,7 @@
 pipeline {
 	agent any
 	environment {
-		TAG = latest
+		TAG = 'latest'
 
 	}
 	stage('Test env') {
