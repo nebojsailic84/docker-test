@@ -18,7 +18,7 @@ pipeline {
 						sh 'which nano'
 					}
 					docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
-						customImage.push()
+						customImage.push('custom')
 					}
 					
 				}
