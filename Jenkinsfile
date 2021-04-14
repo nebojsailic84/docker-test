@@ -20,7 +20,7 @@ pipeline {
 
 		stage('Start container') {
 			steps {
-				sh 'docker run -d -p 8080:8080 nginx:$TAG'
+				sh 'docker run -d -p 8082:80 nginx:$TAG'
 			}
 		}
 	}
