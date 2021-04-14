@@ -1,7 +1,7 @@
 pipeline {
 	agent any
 	environment {
-		TAG = 'latest'
+		IMAGE = 'nebojsailic2614/nginx'
 	}
 	
 	stages {
@@ -11,16 +11,23 @@ pipeline {
 			}
 		}
 
-		stage('Pull the nginx image') {
+		stage('Build the custom image') {
 			steps {
-				sh 'docker pull nginx:$TAG'
+				script {
+					def customImage = docker.build('$IMAGE')
+				
+					customImage.inside {
+						sh 'which nano'
+					}
+				
+				}
 			}
 
 		}
 
 		stage('Start container') {
 			steps {
-				sh 'docker run -d -p 8082:80 nginx:$TAG'
+				sh 'docker run -d -p 8082:80 $IMAGE'
 			}
 		}
 	}
