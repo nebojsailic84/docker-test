@@ -12,23 +12,19 @@ pipeline {
 		stage('Build the custom image') {
 			steps {
 				script {
-					customImage = docker.build('$IMAGE')
+					def customImage = docker.build('$IMAGE')
 				
 					customImage.inside {
 						sh 'which nano'
 					}
-				}
-			}
-		}
-		stage('Push the image') {
-			steps {
-				script {
 					docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
-					customImage.push()
+						customImage.push()
 					}
+					
 				}
 			}
 		}
+
 	}
 
 }
