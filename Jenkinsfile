@@ -12,7 +12,7 @@ pipeline {
 		stage('Build the custom image') {
 			steps {
 				script {
-					def customImage = docker.build('$IMAGE')
+					customImage = docker.build('$IMAGE')
 				
 					customImage.inside {
 						sh 'which nano'
