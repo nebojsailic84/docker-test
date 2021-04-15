@@ -7,8 +7,7 @@ spec:
   selector:
     app: nginx
   ports:
-  - protocol: tcp
-    port: 80
+  - port: 80
     nodePort: 4800
 ---
 apiVersion: apps/v1
