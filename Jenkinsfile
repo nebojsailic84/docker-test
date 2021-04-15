@@ -24,7 +24,17 @@ pipeline {
 				}
 			}
 		}
-
+		stage('K8s Deployment')  {
+			steps {
+				input 'Do you  want to proceed?'
+				milestone 1
+				kubernetesDeploy (
+					kubeconfigId: 'kubeconfig',
+					dockerCredentials: [[credentialsId: 'docker_hub_login']],
+					configs: 'deployment.yaml',
+					enableConfigSubstitution: true
+				)
+			}
+		}
 	}
-
 }
